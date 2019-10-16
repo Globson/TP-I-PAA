@@ -1,5 +1,5 @@
-all: main.c Sources/Funcs.c
-	gcc main.c -o EXEC Sources/Funcs.c
+all: main.c Sources/menu.c Sources/labirinto.c Sources/dados.c
+	gcc main.c -o EXEC Sources/menu.c Sources/labirinto.c Sources/dados.c
 
 run: EXEC
 	./EXEC
