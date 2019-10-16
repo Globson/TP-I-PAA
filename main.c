@@ -74,6 +74,7 @@ int main(int argc, char const *argv[]) {
           colunaEstudante = ColunaEstudante(labirinto, linhaArq, colunaArq);
           Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados);
           ImprimirLabirinto(labirinto, linhaArq, colunaArq);
+          ImprimirDados(dados);
         }
         strcpy(arquivo, "\0");
 

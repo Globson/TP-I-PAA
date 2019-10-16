@@ -8,3 +8,6 @@ typedef struct{
 }TipoDados;
 
 #endif
+
+void IniciarDados(TipoDados *dados);
+void ImprimirDados(TipoDados dados);

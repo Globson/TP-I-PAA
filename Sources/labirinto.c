@@ -63,13 +63,19 @@ int EhParede(int ** labirinto, int linha, int coluna){
   }
   return 0;
 }
-int EhPorta(int ** labirinto, TipoItem *itens, int linha, int coluna){
+int EhPortaAberta(int ** labirinto, int chaves, int linha, int coluna){
   if(labirinto[linha][coluna] == 3){
-    printf("chave %d\n", itens->quantChave);
-    if(itens->quantChave > 0){
-      itens->quantChave --;
+    printf("chave %d\n", chaves);
+    if(chaves > 0){
       return 1;
     }
+  }
+  return 0;
+}
+int EhPortaFechada(int **labirinto, int chaves, int linha, int coluna){
+  if(labirinto[linha][coluna] == 3){
+    if(!EhPortaAberta(labirinto, chaves, linha, coluna))
+      return 1;
   }
   return 0;
 }
@@ -94,13 +100,12 @@ int ColunaEstudante(int ** labirinto, int linha, int coluna){
   return -1;
 }
 int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int linha, int coluna, TipoDados * dados){
-    if((i <= 0 && !EhParede(labirinto, i, j)) || (i <= 0 && !EhPorta(labirinto, itens, i, j))){ //chegou ao final do labirinto e a posi��o � v�lida
+    if(i <= 0 && !EhParede(labirinto, i, j) &&!EhPortaFechada(labirinto, itens->quantChave, i, j)){ //chegou ao final do labirinto e a posi��o � v�lida
         dados->ultimaColuna = j;
         dados->temSaida = 1;
         dados->quantMovimentacao++;
 
         //printf("itens %d\n", itens->quantChave);
-        printf("itens %d\n", itens->quantChave);
         MarcarPosicao(labirinto, i, j);
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;
@@ -109,12 +114,21 @@ int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int lin
         dados->temSaida = 0;
         return 0;
     }
-    if(!EhParede(labirinto, i, j) && !EhPorta(labirinto, itens, i, j)){
-        dados->quantMovimentacao++; //Incrementa o movimento do estudante
+    if(!EhParede(labirinto, i, j) && !EhPortaFechada(labirinto, itens->quantChave, i, j)){
+        dados->quantMovimentacao++;  //Incrementa o movimento do estudante
         printf("Linha: %d Coluna: %d\n", i, j);
     }
-    printf("itens %d\n", itens->quantChave);
-    if(!EhParede(labirinto, i, j) && !EstudantePassou(labirinto, i, j) && !EhPorta(labirinto, itens, i, j)){
+
+    else if(!EhParede(labirinto, i, j) && EhPortaAberta(labirinto, itens->quantChave, i, j)){
+        printf("itens %d\n", itens->quantChave);
+        itens->quantChave --;
+        //dados->quantMovimentacao++;  //Incrementa o movimento do estudante
+        printf("Linha: %d Coluna: %d\n", i, j);
+      }
+
+
+
+    if(!EhParede(labirinto, i, j) && !EstudantePassou(labirinto, i, j) && !EhPortaFechada(labirinto, itens->quantChave, i, j)){
         MarcarPosicao(labirinto, i, j);
         if(Movimenta_Estudante(labirinto, itens,i - 1, j, linha, coluna,dados)); // para cima
         else{
