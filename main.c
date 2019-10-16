@@ -18,11 +18,12 @@ int main(int argc, char const *argv[]) {
   scanf("%d", &opcao);
   switch (opcao) {
     case 1:
-      printf("Por favor digite o nome do arquivo:\n");
+      printf("Por favor digite o nome do arquivo:");
       scanf("%s", arquivo);
       arq = fopen(arquivo, "r");
       while (!arq){
         printf("Erro ao ler o arquivo! \n");
+        printf("Por favor digite o nome do arquivo:");
         scanf("%s", arquivo);
         arq = fopen(arquivo, "r");
       }
