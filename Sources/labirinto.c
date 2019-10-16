@@ -5,7 +5,7 @@
 #include <malloc.h>
 #include <time.h>
 
-int ** Iniciarlabirinto(int linha, int coluna, TipoItem* itens, int quantChave){
+int ** IniciarLabirinto(int linha, int coluna, TipoItem *itens,int quantChave){
     int **labirintof;
 
     labirintof = (int**)calloc((linha+1),sizeof(int*));
