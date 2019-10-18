@@ -5,10 +5,13 @@
 #include "Headers/labirinto.h"
 #include "Headers/menu.h"
 #include "Headers/dados.h"
+#include "Headers/gerador.h"
+
 #define MODOANALISE 1  //SETAR 1 PARA ATIVAR, 0 PARA DESATIVAR
+
 int main(int argc, char const *argv[]) {
   //Váriveis necessárias para criação do programa
-  int i = 0, j = 0, valor, opcao;
+  int i, j, valor, opcao, modo;
   int linhaEstudante, colunaEstudante;
   int  linhaArq, colunaArq, quantChaveArq;
   char valorAux, arquivo[30];
@@ -19,11 +22,12 @@ int main(int argc, char const *argv[]) {
   TipoDados dados;
   long long int numRecurcoes;
   while(1){
-    IniciarDados(&dados);
-    i = 0;
-    j = 0;
+
+    IniciarDados(&dados); // Iniciando uma nova analise do labirinto
+    i = 0; //zerando as variaveis de leitura para evitar falha de segmentação
+    j = 0; //zerando as variaveis de leitura para evitar falha de segmentação
     system("clear");
-    menu_de_entradas(); //chamada do menu que mostra as opções ao usuário.
+    MenuPrincipal(); //chamada do menu que mostra as opções ao usuário.
     scanf("%d", &opcao);
     system("clear");
     switch (opcao) {
@@ -80,7 +84,7 @@ int main(int argc, char const *argv[]) {
           colunaEstudante = ColunaEstudante(labirinto, linhaArq, colunaArq);
 
           if(MODOANALISE){
-            numRecurcoes = 0;
+            numRecurcoes = -1; //inicializado como -1 para desconsiderar primeira chamada realizada pelo main
             Movimenta_Estudante_Analise(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&numRecurcoes);
             printf("\n\tMODO ANALISE!\n-->O numero total de chamadas recursivas foi de: %lld\n\n",numRecurcoes);
           }else{
@@ -95,8 +99,33 @@ int main(int argc, char const *argv[]) {
         strcpy(arquivo, "\0");
 
         break;
+        case 3:
+          MenuPrincipalGerador();
+          scanf("%d", &modo);
+          switch (modo) {
+            case 1: // Fácil
+              ModoFacil();
+              printf("Arquivo Criado com Sucesso!\n");
+              system("read -p 'Pressione Enter para continuar...' var");
+              break;
+            case 2: // Intermediario
+              ModoIntermediario();
+              printf("Arquivo Criado com Sucesso!\n");
+              system("read -p 'Pressione Enter para continuar...' var");
+              break;
+            case 3: // Dificil
+              ModoDificil();
+              printf("Arquivo Criado com Sucesso!\n");
+              system("read -p 'Pressione Enter para continuar...' var");
+              break;
+            default:
+              printf("Opção Invalida!\n");
+              system("read -p 'Pressione Enter para continuar...' var");
+              break;
+          }
+          break;
       default:
-        menu_de_saida();
+        MenuSaida();
         printf("Saindo !!\n");
         exit(0);
     }

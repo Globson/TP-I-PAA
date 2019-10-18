@@ -3,7 +3,7 @@
 
 typedef struct{
     int quantMovimentacao;
-    int temSaida;
+    int consegueSair;
     int ultimaColuna;
 }TipoDados;
 

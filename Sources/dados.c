@@ -5,14 +5,13 @@
 void IniciarDados(TipoDados *dados){
   dados->quantMovimentacao = -1; // começamos com -1 para desconsiderar a movimentação de quando ele está parado
   dados->ultimaColuna = -1;
-  dados->temSaida = 0;
+  dados->consegueSair = 0;
 }
 void ImprimirDados(TipoDados dados){
-    printf("\nO estudante se movimentou %d vezes ", dados.quantMovimentacao);
-    if(dados.temSaida == 1) {
-      printf("e chegou na coluna %d da primeira linha.\n", dados.ultimaColuna);
+    if(dados.consegueSair == 1) {
+      printf("\nO estudante se movimentou %d vezes e chegou na coluna %d da primeira linha.\n", dados.quantMovimentacao,dados.ultimaColuna);
     }
     else{
-      printf("e percebeu que o labirinto nao tem saida.\n");
+      printf("\nO estudante se movimentou %d vezes e percebeu que o labirinto nao tem saida.\n,", dados.quantMovimentacao);
     }
 }

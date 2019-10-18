@@ -16,7 +16,7 @@ int EstudanteEsta(int ** labirinto, int linha, int coluna);
 int LinhaEstudante(int ** labirinto, int linha, int coluna);
 int ColunaEstudante(int ** labirinto, int linha, int coluna);
 int EhParede(int ** labirinto, int linha, int coluna);
-void EhPortaAberta(int ** labirinto, int linha, int coluna);
+void AbrirPorta(int ** labirinto, int linha, int coluna);
 int EhPortaFechada(int **labirinto, int linha, int coluna);
 int Movimenta_Estudante(int ** labirinto,TipoItem *itens, int x, int y, int linha, int coluna, TipoDados *dados);
 int Movimenta_Estudante_Analise(int ** labirinto,TipoItem *itens, int x, int y, int linha, int coluna, TipoDados *dados,long long int* NUM);
