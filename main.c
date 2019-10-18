@@ -74,10 +74,13 @@ int main(int argc, char const *argv[]) {
         else{
           linhaEstudante = LinhaEstudante(labirinto, linhaArq, colunaArq);
           colunaEstudante = ColunaEstudante(labirinto, linhaArq, colunaArq);
-          Num_Recurcoes = 0;
-          Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&Num_Recurcoes);
+
           if(MODOANALISE){
+            Num_Recurcoes = 0;
+            Movimenta_Estudante_Analise(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&Num_Recurcoes);
             printf("\n\tMODO ANALISE!\n-->O numero total de chamadas recursivas foi de: %lld\n\n",Num_Recurcoes);
+          }else{
+            Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados);
           }
           ImprimirLabirinto(labirinto, linhaArq, colunaArq);
           ImprimirDados(dados);
