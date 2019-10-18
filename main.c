@@ -14,17 +14,20 @@ int main(int argc, char const *argv[]) {
   char valorAux, arquivo[30];
   strcpy(arquivo, "\0"); //colocamos vazio em arquivo para impedir que o usuario acesse a opcao 2 antes de digitar o nome do arquivo
   FILE *arq;
-  int ** labirinto;
+  Labirinto labirinto;
   TipoItem itens;
   TipoDados dados;
-  long long int Num_Recurcoes;
+  long long int numRecurcoes;
   while(1){
+    IniciarDados(&dados);
+    i = 0;
+    j = 0;
     system("clear");
     menu_de_entradas(); //chamada do menu que mostra as opções ao usuário.
     scanf("%d", &opcao);
     system("clear");
     switch (opcao) {
-      case 1:
+      case 1: // Carregar novo arquivo de dados
         printf("Por favor digite o nome do arquivo: ");
         scanf("%s", arquivo);
         arq = fopen(arquivo, "r");
@@ -64,7 +67,8 @@ int main(int argc, char const *argv[]) {
           system("read -p 'Pressione Enter para continuar...' var");
           fclose(arq);
         break;
-      case 2:
+      case 2: // Processar e exibir resposta
+
         printf("%s\n", arquivo);
         if(strlen(arquivo) == 0){
           printf("Por favor carregue antes um arquivo de dados!\n");
@@ -76,9 +80,9 @@ int main(int argc, char const *argv[]) {
           colunaEstudante = ColunaEstudante(labirinto, linhaArq, colunaArq);
 
           if(MODOANALISE){
-            Num_Recurcoes = 0;
-            Movimenta_Estudante_Analise(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&Num_Recurcoes);
-            printf("\n\tMODO ANALISE!\n-->O numero total de chamadas recursivas foi de: %lld\n\n",Num_Recurcoes);
+            numRecurcoes = 0;
+            Movimenta_Estudante_Analise(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&numRecurcoes);
+            printf("\n\tMODO ANALISE!\n-->O numero total de chamadas recursivas foi de: %lld\n\n",numRecurcoes);
           }else{
             Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados);
           }
@@ -87,6 +91,7 @@ int main(int argc, char const *argv[]) {
           system("read -p 'Pressione Enter para continuar...' var");
           system("clear");
         }
+        free(labirinto);
         strcpy(arquivo, "\0");
 
         break;

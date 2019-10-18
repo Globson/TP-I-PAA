@@ -96,10 +96,8 @@ int ColunaEstudante(int ** labirinto, int linha, int coluna){
 int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int linha, int coluna, TipoDados * dados){
     if(i <= 0 && !EhParede(labirinto, i, j)){ //chegou ao final do labirinto e a posi��o � v�lida
         dados->ultimaColuna = j;
-        dados->temSaida = 1;
         dados->quantMovimentacao++;
-        //itens->quantChave--;
-        //printf("itens %d\n", itens->quantChave);
+        dados->temSaida = 1;
         MarcarPosicao(labirinto, i, j);
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;
@@ -120,7 +118,6 @@ int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int lin
     }
     if(!EhParede(labirinto, i, j) && !EstudantePassou(labirinto, i, j) && !EhPortaFechada(labirinto, i, j)){
         MarcarPosicao(labirinto, i, j);
-        //itens->quantChave--;
         if(Movimenta_Estudante(labirinto, itens,i - 1, j, linha, coluna,dados)); // para cima
         else{
             if(Movimenta_Estudante(labirinto, itens, i, j + 1, linha, coluna,dados)); // para a direita
@@ -137,21 +134,19 @@ int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int lin
     }else{
       return 0;
     }
-    return 0; //PUS PARA TIRA WARNING
+    return 1;
 }
 int Movimenta_Estudante_Analise(int ** labirinto, TipoItem *itens, int i, int j, int linha, int coluna, TipoDados * dados,long long int* NUM){
     *NUM = *NUM + 1;
-    if(i <= 0 && !EhParede(labirinto, i, j)){ //chegou ao final do labirinto e a posi��o � v�lida
+    if(i == 0 && !EhParede(labirinto, i, j)){ //chegou ao final do labirinto e a posi��o � v�lida
         dados->ultimaColuna = j;
-        dados->temSaida = 1;
         dados->quantMovimentacao++;
-        //itens->quantChave--;
-        //printf("itens %d\n", itens->quantChave);
+        dados->temSaida = 1;
         MarcarPosicao(labirinto, i, j);
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;
     }
-    if(j >= coluna || j < 0 || i >= linha){ // ultrapassou os limites do labirinto
+    if(j >= coluna || i >= linha || j < 0){ // ultrapassou os limites do labirinto
         dados->temSaida = 0;
         return 0;
     }
@@ -167,7 +162,6 @@ int Movimenta_Estudante_Analise(int ** labirinto, TipoItem *itens, int i, int j,
     }
     if(!EhParede(labirinto, i, j) && !EstudantePassou(labirinto, i, j) && !EhPortaFechada(labirinto, i, j)){
         MarcarPosicao(labirinto, i, j);
-        //itens->quantChave--;
         if(Movimenta_Estudante_Analise(labirinto, itens,i - 1, j, linha, coluna,dados,NUM)); // para cima
         else{
             if(Movimenta_Estudante_Analise(labirinto, itens, i, j + 1, linha, coluna,dados,NUM)); // para a direita
@@ -184,5 +178,5 @@ int Movimenta_Estudante_Analise(int ** labirinto, TipoItem *itens, int i, int j,
     }else{
       return 0;
     }
-    return 0; //PUS PARA TIRA WARNING
+    return 1;
 }
