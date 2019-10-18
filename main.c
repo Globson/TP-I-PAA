@@ -5,7 +5,7 @@
 #include "Headers/labirinto.h"
 #include "Headers/menu.h"
 #include "Headers/dados.h"
-
+#define MODOANALISE 1  //SETAR 1 PARA ATIVAR, 0 PARA DESATIVAR
 int main(int argc, char const *argv[]) {
   //Váriveis necessárias para criação do programa
   int i = 0, j = 0, valor, opcao;
@@ -17,6 +17,7 @@ int main(int argc, char const *argv[]) {
   int ** labirinto;
   TipoItem itens;
   TipoDados dados;
+  long long int Num_Recurcoes;
   while(1){
     system("clear");
     menu_de_entradas(); //chamada do menu que mostra as opções ao usuário.
@@ -73,7 +74,11 @@ int main(int argc, char const *argv[]) {
         else{
           linhaEstudante = LinhaEstudante(labirinto, linhaArq, colunaArq);
           colunaEstudante = ColunaEstudante(labirinto, linhaArq, colunaArq);
-          Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados);
+          Num_Recurcoes = 0;
+          Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados,&Num_Recurcoes);
+          if(MODOANALISE){
+            printf("\n\tMODO ANALISE!\n-->O numero total de chamadas recursivas foi de: %lld\n\n",Num_Recurcoes);
+          }
           ImprimirLabirinto(labirinto, linhaArq, colunaArq);
           ImprimirDados(dados);
           system("read -p 'Pressione Enter para continuar...' var");
