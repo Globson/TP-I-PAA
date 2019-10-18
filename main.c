@@ -18,8 +18,10 @@ int main(int argc, char const *argv[]) {
   TipoItem itens;
   TipoDados dados;
   while(1){
+    system("clear");
     menu_de_entradas(); //chamada do menu que mostra as opções ao usuário.
     scanf("%d", &opcao);
+    system("clear");
     switch (opcao) {
       case 1:
         printf("Por favor digite o nome do arquivo: ");
@@ -34,10 +36,6 @@ int main(int argc, char const *argv[]) {
 
           // lemos a primeira linha e armazenamos os valores das linhas colunas e  a quantidade de chaves que o estudante tem
           fscanf(arq,"%d %d %d\n", &linhaArq, &colunaArq, &quantChaveArq);
-
-          printf("linha %d\n", linhaArq);
-          printf("coluna %d\n", colunaArq);
-          printf("quant %d\n", quantChaveArq);
 
           labirinto = IniciarLabirinto(linhaArq, colunaArq, &itens, quantChaveArq); // criamos uma matriz com o tamanho passado pelo arquivo
 
@@ -61,12 +59,15 @@ int main(int argc, char const *argv[]) {
               j++;
             }
           }
+          printf("Arquivo carregado com sucesso!!\n");
+          system("read -p 'Pressione Enter para continuar...' var");
           fclose(arq);
         break;
       case 2:
         printf("%s\n", arquivo);
         if(strlen(arquivo) == 0){
           printf("Por favor carregue antes um arquivo de dados!\n");
+          system("read -p 'Pressione Enter para continuar...' var");
           break;
         }
         else{
@@ -75,31 +76,17 @@ int main(int argc, char const *argv[]) {
           Movimenta_Estudante(labirinto, &itens, linhaEstudante, colunaEstudante, linhaArq, colunaArq, &dados);
           ImprimirLabirinto(labirinto, linhaArq, colunaArq);
           ImprimirDados(dados);
+          system("read -p 'Pressione Enter para continuar...' var");
+          system("clear");
         }
         strcpy(arquivo, "\0");
 
         break;
       default:
+        menu_de_saida();
         printf("Saindo !!\n");
         exit(0);
     }
-
-
-
-    /*
-    printf("%d ", labirinto[0][0]);
-    printf("%d ", labirinto[0][1]);
-    printf("%d\n", labirinto[0][2]);
-
-    printf("%d ", labirinto[1][0]);
-    printf("%d ", labirinto[1][1]);
-    printf("%d\n", labirinto[1][2]);
-
-    printf("%d ", labirinto[2][0]);
-    printf("%d ", labirinto[2][1]);
-    printf("%d\n", labirinto[2][2]);
-    */
-
   }
 
   return 0;

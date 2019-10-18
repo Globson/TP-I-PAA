@@ -26,7 +26,7 @@ void menu_de_entradas(){
 void menu_de_saida(){
   printf("====================================================================\n");
   printf("\n");
-  printf("Trabalho feito por:\n\n -> Arthur De Bellis - 03503\n -> Saulo Miranda Silva - 03475\n -> Pablo Ferreira - 03480\n");
+  printf("Trabalho feito por:\n\n -> Pablo Ferreira - 3480\n -> Samuel Pedro - ****\n");
   printf("\n");
   printf("====================================================================\n");
 }
