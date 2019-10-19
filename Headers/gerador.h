@@ -9,7 +9,7 @@ labirinto, quantidade de portas, quantidade de chaves iniciais, e “dificuldade
 labirinto, entre outros, que vocês poderão colocar.*/
 
 void ModoFacil();
-void ModoIntermediario();
+void ModoMedio();
 void ModoDificil();
 
 #endif

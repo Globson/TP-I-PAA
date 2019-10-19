@@ -11,3 +11,4 @@ typedef struct{
 
 void IniciarDados(TipoDados *dados);
 void ImprimirDados(TipoDados dados);
+void DadosFinais(TipoDados * dados, int j);

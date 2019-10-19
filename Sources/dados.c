@@ -15,3 +15,8 @@ void ImprimirDados(TipoDados dados){
       printf("\nO estudante se movimentou %d vezes e percebeu que o labirinto nao tem saida.\n,", dados.quantMovimentacao);
     }
 }
+void DadosFinais(TipoDados * dados, int j){
+  dados->quantMovimentacao ++;
+  dados->ultimaColuna = j;
+  dados->consegueSair = 1;
+}

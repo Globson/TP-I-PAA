@@ -109,7 +109,7 @@ int main(int argc, char const *argv[]) {
               system("read -p 'Pressione Enter para continuar...' var");
               break;
             case 2: // Intermediario
-              ModoIntermediario();
+              ModoMedio();
               printf("Arquivo Criado com Sucesso!\n");
               system("read -p 'Pressione Enter para continuar...' var");
               break;

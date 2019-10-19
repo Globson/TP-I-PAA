@@ -33,7 +33,7 @@ void MenuPrincipalGerador(){
   printf("\n");
   printf("Opcoes do programa:\n");
   printf("1) Fácil.\n");
-  printf("2) Intermediario\n");
+  printf("2) Médio\n");
   printf("3) Díficil.\n");
   printf("4 ou qualquer outro caracter) Sair.\n");
 
@@ -47,7 +47,7 @@ void MenuPrincipalGerador(){
 void MenuSaida(){
   printf("====================================================================\n");
   printf("\n");
-  printf("Trabalho feito por:\n\n -> Pablo Ferreira - 3480\n -> Samuel Pedro - ****\n");
+  printf("Trabalho feito por:\n\n -> Pablo Ferreira - 3480\n -> Samuel Pedro - 3494\n");
   printf("\n");
   printf("====================================================================\n");
 }

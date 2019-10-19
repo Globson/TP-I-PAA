@@ -60,6 +60,19 @@ int EstudanteEsta(int ** labirinto, int linha, int coluna){
   }
   return 0;
 }
+/*Função para encontrar se tá no final do labirinto*/
+int ChegouNoFim(int **labirinto, int i, int j){
+  if(i <= 0 && !EhParede(labirinto, i, j)){
+    return 1;
+  }
+  return 0;
+}
+int UltrapassouLimites(int i, int j, int linha, int coluna){
+  if(j >= coluna || i >= linha || j < 0){
+    return 1;
+  }
+  return 0;
+}
 /*Função para conferir se determinada posição é uma parede*/
 int EhParede(int ** labirinto, int linha, int coluna){
   if(labirinto[linha][coluna] == 2){
@@ -111,7 +124,7 @@ int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int lin
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;
     }
-    if(j >= coluna || i >= linha || j < 0 ){ //Posição fora do espaço do labirinto
+    if(UltrapassouLimites(i, j, linha, coluna)){ //Posição fora do espaço do labirinto
         dados->consegueSair = 0;
         return 0;
     }
@@ -152,10 +165,8 @@ int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int lin
 /*Mesma função, porém com o modo analise*/
 int Movimenta_Estudante_Analise(int ** labirinto, TipoItem *itens, int i, int j, int linha, int coluna, TipoDados * dados,long long int* NUM){
     *NUM = *NUM + 1;
-    if(i == 0 && !EhParede(labirinto, i, j)){  /*O estudante chegou no final do labirinto*/
-        dados->ultimaColuna = j;
-        dados->quantMovimentacao++;
-        dados->consegueSair = 1;
+    if(ChegouNoFim(labirinto, i, j)){  /*O estudante chegou no final do labirinto*/
+        DadosFinais(dados, j);
         MarcarPosicao(labirinto, i, j);
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;

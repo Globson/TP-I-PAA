@@ -39,13 +39,13 @@ void ModoFacil(){ // Labirintos de 5x5 até 10x10
     fclose(arq);
   }
 }
-void ModoIntermediario(){   // Labirintos de 10x10 até 25x25
+void ModoMedio(){   // Labirintos de 10x10 até 25x25
   srand( (unsigned)time(NULL) );
   int linha = 0, coluna = 0, quantChave = 0, valor = 0, estudanteLinha = 0, estudanteColuna = 0;
   char arquivo[30];
   FILE *arq;
   linha = 10 + rand() % 16;
-  estudanteLinha = rand() % 10; // estudante fica em uma posição aleatoria da linha
+  estudanteLinha = 10 + rand() % 10; // estudante fica em uma posição aleatoria da linha
   while(estudanteLinha > linha){
     estudanteLinha = 10 + rand() % 16; // estudante fica em uma posição aleatoria da linha
   }
