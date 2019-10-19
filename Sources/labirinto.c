@@ -117,9 +117,7 @@ int ColunaEstudante(int ** labirinto, int linha, int coluna){
 /*Função principal do programa, onde conferimos sempre se o estudante já chegou no final do labirinto e utilizamos o backtracking*/
 int Movimenta_Estudante(int ** labirinto, TipoItem *itens, int i, int j, int linha, int coluna, TipoDados * dados){
     if(ChegouNoFim(labirinto, i, j)){ /*O estudante chegou no final do labirinto*/
-        dados->ultimaColuna = j;
-        dados->quantMovimentacao++;
-        dados->consegueSair = 1;
+        DadosFinais(dados, j);
         MarcarPosicao(labirinto, i, j);
         printf("Linha: %d Coluna: %d\n", i, j);
         return 1;
